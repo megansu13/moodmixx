@@ -72,7 +72,7 @@ def redirect_page():
 	logging.info('new user:' + session['user_id'])
 
 	# return redirect("http://localhost:3000/content")
-	return redirect("/content")
+	return redirect("https://moodmixx-app-30a3f646f185.herokuapp.com/content")
 
 @spots.route('/playlistTracks', methods = ['GET'])
 @cross_origin()
