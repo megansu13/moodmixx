@@ -1,5 +1,6 @@
 import flask
 from flask_cors import CORS, cross_origin
+from flask import send_from_directory
 
 
 # app is a single object used by all the code modules in this package
