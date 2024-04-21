@@ -1,1 +1,1 @@
-web: gunicorn moodmixx:app
+web: gunicorn "moodmixx:create_app()"
