@@ -10,19 +10,26 @@ from flask import Blueprint, Flask, jsonify, request, redirect, g, render_templa
 import requests
 from urllib.parse import quote
 from moodmixx import app
+from flask_cors import CORS, cross_origin
 
 # Authentication Steps, paramaters, and responses are defined at https://developer.spotify.com/web-api/authorization-guide/
 # Visit this url to see all the steps, parameters, and expected response.
 
 spots = Blueprint("spots", __name__)
-redirect_uri = "http://localhost:8080/redirect"
+# redirect_uri = "http://localhost:8080/redirect"
+redirect_uri = "https://moodmixx-app-30a3f646f185.herokuapp.com/redirect"
 app.secret_key = 'sdfjios#*749872$&%^*A80'
 
 
-@spots.route('/')
 @spots.route('/home')
+@cross_origin()
 def home():
     return jsonify({"status": "success", "message": "User is home"}), 200
+
+@spots.route('/')
+@cross_origin()
+def serve():
+	return send_from_directory(app.static_folder, 'index.html')
 
 @spots.route('/authorize')
 def authorize():
@@ -62,7 +69,8 @@ def redirect_page():
 	session['user_id'] = current_user['id']
 	logging.info('new user:' + session['user_id'])
 
-	return redirect("http://localhost:3000/content")
+	# return redirect("http://localhost:3000/content")
+	return redirect("https://moodmixx-app-30a3f646f185.herokuapp.com/content")
 
 @spots.route('/playlistTracks', methods = ['GET'])
 def playlistTracks():
