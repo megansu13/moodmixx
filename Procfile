@@ -1,1 +1,1 @@
-web: gunicorn spots:app
+web: gunicorn moodmixx.spots:app
