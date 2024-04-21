@@ -9,7 +9,6 @@ from spotipy.oauth2 import SpotifyOAuth
 from flask import Blueprint, Flask, jsonify, request, redirect, g, render_template, session, url_for, make_response, send_from_directory, current_app
 import requests
 from urllib.parse import quote
-from moodmixx import app
 from flask_cors import CORS, cross_origin
 
 # Authentication Steps, paramaters, and responses are defined at https://developer.spotify.com/web-api/authorization-guide/
