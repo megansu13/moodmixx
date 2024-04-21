@@ -26,10 +26,6 @@ app.secret_key = 'sdfjios#*749872$&%^*A80'
 def home():
     return jsonify({"status": "success", "message": "User is home"}), 200
 
-@spots.route('/')
-@cross_origin()
-def serve():
-	return send_from_directory(app.static_folder, 'index.html')
 
 @spots.route('/authorize')
 @cross_origin()

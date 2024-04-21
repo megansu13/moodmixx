@@ -10,7 +10,6 @@ import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
       <Routes>
         <Route
           path="/"
@@ -30,7 +29,6 @@ function App() {
           element={<Advanced />}
         />
       </Routes>
-    </BrowserRouter>
   );
 }
 
