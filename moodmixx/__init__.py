@@ -24,7 +24,5 @@ def create_app():
         else:
             return send_from_directory(app.static_folder, 'index.html')
 
-    return app
-
-    # if __name__ == '__main__':
-    #     app.run()
+    if __name__ == '__main__':
+        app.run()
