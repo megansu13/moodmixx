@@ -31,7 +31,7 @@ function Advanced() {
     try {
       // Adjust the URL to where your backend endpoint for getDaylist is hosted
       const response = await fetch(
-        "https://moodmixx-app-30a3f646f185.herokuapp.com/playlistTracks",
+        "/playlistTracks",
         {
           credentials: "include",
           mode: "cors",
@@ -75,7 +75,7 @@ function Advanced() {
     stop();
     if (direction === "right") {
       // Make a POST request to the server to add track to Spotify library
-      fetch("https://moodmixx-app-30a3f646f185.herokuapp.com/addTrack", {
+      fetch("/addTrack", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
