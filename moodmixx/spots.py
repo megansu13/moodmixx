@@ -6,7 +6,7 @@ import time
 import flask
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
-from flask import Blueprint, Flask, jsonify, request, redirect, g, render_template, session, url_for, make_response, send_from_directory
+from flask import Blueprint, Flask, jsonify, request, redirect, g, render_template, session, url_for, make_response, send_from_directory, current_app
 import requests
 from urllib.parse import quote
 from moodmixx import app
@@ -18,7 +18,7 @@ from flask_cors import CORS, cross_origin
 spots = Blueprint("spots", __name__)
 # redirect_uri = "http://localhost:8080/redirect"
 redirect_uri = "https://moodmixx-app-30a3f646f185.herokuapp.com/redirect"
-app.secret_key = 'sdfjios#*749872$&%^*A80'
+current_app.secret_key = 'sdfjios#*749872$&%^*A80'
 
 # @spots.route('/')
 @spots.route('/home')
@@ -30,8 +30,8 @@ def home():
 @spots.route('/authorize')
 @cross_origin()
 def authorize():
-	client_id = app.config['CLIENT_ID']
-	scope = app.config['SCOPE']
+	client_id = current_app.config['CLIENT_ID']
+	scope = current_app.config['SCOPE']
 	# state key used to protect against cross-site forgery attacks
 	state_key = createStateKey(15)
 	session['state_key'] = state_key
@@ -121,7 +121,7 @@ def removeSong():
 
 def refreshToken(refresh_token):
 	token_url = 'https://accounts.spotify.com/api/token'
-	authorization = app.config['AUTHORIZATION']
+	authorization = current_app.config['AUTHORIZATION']
 
 	headers = {'Authorization': authorization, 'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded'}
 	body = {'refresh_token': refresh_token, 'grant_type': 'refresh_token'}
@@ -136,7 +136,7 @@ def refreshToken(refresh_token):
 	
 def getToken(code):
 	token_url = 'https://accounts.spotify.com/api/token'
-	authorization = app.config['AUTHORIZATION']
+	authorization = current_app.config['AUTHORIZATION']
 
 	headers = {'Authorization': authorization, 'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded'}
 	body = {'code': code, 'redirect_uri': redirect_uri, 'grant_type': 'authorization_code'}
