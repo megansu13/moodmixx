@@ -13,20 +13,20 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route
-          path="https://moodmixx-app-30a3f646f185.herokuapp.com/"
+          path="/"
           element={
             <Navigate
               replace
-              to="https://moodmixx-app-30a3f646f185.herokuapp.com/login"
+              to="/login"
             />
           }
         />
         <Route
-          path="https://moodmixx-app-30a3f646f185.herokuapp.com/login"
+          path="/login"
           element={<Login />}
         />
         <Route
-          path="https://moodmixx-app-30a3f646f185.herokuapp.com/content"
+          path="/content"
           element={<Advanced />}
         />
       </Routes>
