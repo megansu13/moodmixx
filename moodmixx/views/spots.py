@@ -20,16 +20,16 @@ spots = Blueprint("spots", __name__)
 redirect_uri = "https://moodmixx-app-30a3f646f185.herokuapp.com/redirect"
 app.secret_key = 'sdfjios#*749872$&%^*A80'
 
-@spots.route('/')
+# @spots.route('/')
 @spots.route('/home')
 @cross_origin()
 def home():
     return jsonify({"status": "success", "message": "User is home"}), 200
 
-# @spots.route('/')
-# @cross_origin()
-# def serve():
-# 	return send_from_directory(app.static_folder, 'index.html')
+@spots.route('/')
+@cross_origin()
+def serve():
+	return send_from_directory(app.static_folder, 'index.html')
 
 @spots.route('/authorize')
 @cross_origin()
