@@ -6,10 +6,11 @@ import Switch from 'react-ios-switch'
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from './Login';
 import Advanced from './Advanced'
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-    <div>
+    <BrowserRouter>
       <Routes>
         <Route
           path="https://moodmixx-app-30a3f646f185.herokuapp.com/"
@@ -29,7 +30,7 @@ function App() {
           element={<Advanced />}
         />
       </Routes>
-    </div>
+    </BrowserRouter>
   );
 }
 
