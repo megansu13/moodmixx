@@ -2,7 +2,7 @@
   "name": "moodmixx",
   "homepage": "/login",
   "version": "0.1.0",
-  "proxy": "https://moodmixx-app-30a3f646f185.herokuapp.com",
+  "proxy": "https://moodmixx-app-30a3f646f185.herokuapp.com/",
   "private": true,
   "dependencies": {
     "@react-spring/web": "^9.5.5",
