@@ -11,9 +11,23 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Navigate replace to="/login" />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/content" element={<Advanced />} />
+        <Route
+          path="https://moodmixx-app-30a3f646f185.herokuapp.com/"
+          element={
+            <Navigate
+              replace
+              to="https://moodmixx-app-30a3f646f185.herokuapp.com/login"
+            />
+          }
+        />
+        <Route
+          path="https://moodmixx-app-30a3f646f185.herokuapp.com/login"
+          element={<Login />}
+        />
+        <Route
+          path="https://moodmixx-app-30a3f646f185.herokuapp.com/content"
+          element={<Advanced />}
+        />
       </Routes>
     </div>
   );
