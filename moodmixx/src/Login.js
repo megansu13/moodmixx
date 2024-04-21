@@ -3,7 +3,8 @@ import spotifyLogo from "./Spotify_Logo_RGB_White.png";
 
 function Login() {
   const handleLogin = () => {
-    window.location.href = 'http://localhost:8080/authorize';  // Adjust if your Flask app is on a different base URL
+    window.location.href =
+      "https://moodmixx-app-30a3f646f185.herokuapp.com/authorize";  // Adjust if your Flask app is on a different base URL
   };
 
   return (
