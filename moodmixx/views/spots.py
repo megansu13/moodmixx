@@ -6,38 +6,25 @@ import time
 import flask
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
-from flask import Blueprint, Flask, jsonify, request, redirect, g, render_template, session, url_for, make_response, send_from_directory, current_app
+from flask import Blueprint, Flask, jsonify, request, redirect, g, render_template, session, url_for, make_response
 import requests
 from urllib.parse import quote
-from flask_cors import CORS, cross_origin
 from moodmixx import app
 
 # Authentication Steps, paramaters, and responses are defined at https://developer.spotify.com/web-api/authorization-guide/
 # Visit this url to see all the steps, parameters, and expected response.
 
 spots = Blueprint("spots", __name__)
-# redirect_uri = "http://localhost:8080/redirect"
 redirect_uri = "https://moodmixx-app-30a3f646f185.herokuapp.com/redirect"
 app.secret_key = 'sdfjios#*749872$&%^*A80'
 
-# @spots.route('/')
+
+@spots.route('/')
 @spots.route('/home')
-@cross_origin()
 def home():
     return jsonify({"status": "success", "message": "User is home"}), 200
 
-@spots.route('/', defaults={'path': ''})
-@spots.route('/<path:path>')
-@cross_origin()
-def serve(path):
-    if path != "" and os.path.exists(app.static_folder + '/' + path):
-        return send_from_directory(app.static_folder, path)
-    else:
-        return send_from_directory(app.static_folder, 'index.html')
-
-
 @spots.route('/authorize')
-@cross_origin()
 def authorize():
 	client_id = app.config['CLIENT_ID']
 	scope = app.config['SCOPE']
@@ -52,7 +39,6 @@ def authorize():
 	return response
 
 @spots.route('/redirect')
-@cross_origin()
 def redirect_page():
 	# make sure the response came from Spotify
 	if request.args.get('state') != session['state_key']:
@@ -76,11 +62,9 @@ def redirect_page():
 	session['user_id'] = current_user['id']
 	logging.info('new user:' + session['user_id'])
 
-	return redirect("https://moodmixx-app-30a3f646f185.herokuapp.com/content")
-	#return redirect("/content")
+	return redirect("https://moodmixx.netlify.app/content")
 
 @spots.route('/playlistTracks', methods = ['GET'])
-@cross_origin()
 def playlistTracks():
 	# make sure application is authorized for user 
 	if session.get('token') == None or session.get('token_expiration') == None:
@@ -100,7 +84,6 @@ def playlistTracks():
 	return track_ids
 
 @spots.route('/addTrack', methods=["PUT"])
-@cross_origin()
 def addSong():
 	if session.get('token') == None or session.get('token_expiration') == None:
 		session['previous_url'] = '/tracks'
@@ -115,7 +98,6 @@ def addSong():
 	return jsonify({'status': 'success', 'message': 'Track added'}), 200
 
 @spots.route('/removeTrack')
-@cross_origin()
 def removeSong():
 	if session.get('token') == None or session.get('token_expiration') == None:
 		session['previous_url'] = '/tracks'
