@@ -3,7 +3,7 @@ import TinderCard from "react-tinder-card";
 function Advanced() {
   const [songs, setSongs] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  const [ setIsLoading] = useState(true);
   const [lastDirection, setLastDirection] = useState();
   const [song, setSong] = useState(null);
   const audioRef = useRef(new Audio());
@@ -18,10 +18,12 @@ function Advanced() {
 
   useEffect(() => {
     fetchDaylist();
+    //eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     return () => {
+      //eslint-disable-next-line
       audioRef.current.pause();
     };
   }, []);
