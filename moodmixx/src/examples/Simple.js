@@ -51,7 +51,7 @@ function Simple () {
           </TinderCard>
         )}
       </div>
-      {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText' />}
+      {lastDirection ? <h2 className='infoText'>You swiped {lastDirection}</h2> : <h2 className='infoText'> </h2>}
     </div>
   )
 }
